@@ -1,0 +1,58 @@
+# Text Analyzer
+
+import string
+
+def analyze_text(text):
+    # Удаление знаков препинания
+    text = text.translate(str.maketrans("", "", string.punctuation))
+    
+    # Преобразование текста в нижний регистр
+    text = text.lower()
+    
+    # Разделение текста на слова
+    words = text.split()
+    
+    # Подсчет количества слов
+    word_count = len(words)
+    
+    # Подсчет количества уникальных слов
+    unique_words = set(words)
+    unique_word_count = len(unique_words)
+    
+    # Подсчет количества символов
+    char_count = len(text)
+    
+    # Подсчет количества предложений
+    sentences = text.split('. ')
+    sentence_count = len(sentences)
+    
+    # Подсчет количества абзацев
+    paragraphs = text.split('\n\n')
+    paragraph_count = len(paragraphs)
+    
+    # Возвращение результатов анализа текста
+    analysis = {
+        'word_count': word_count,
+        'unique_word_count': unique_word_count,
+        'char_count': char_count,
+        'sentence_count': sentence_count,
+        'paragraph_count': paragraph_count
+    }
+    
+    return analysis
+
+# Пример использования
+text = """
+Python is a widely used high-level programming language for general-purpose programming,
+created by Guido van Rossum and first released in 1991. Python has a design philosophy
+that emphasizes code readability, and a syntax that allows programmers to express concepts
+in fewer lines of code than would be possible in languages such as C++ or Java.
+"""
+
+result = analyze_text(text)
+
+print(f"Word count: {result['word_count']}")
+print(f"Unique word count: {result['unique_word_count']}")
+print(f"Character count: {result['char_count']}")
+print(f"Sentence count: {result['sentence_count']}")
+print(f"Paragraph count: {result['paragraph_count']}")
